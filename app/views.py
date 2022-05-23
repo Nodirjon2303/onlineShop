@@ -28,7 +28,7 @@ def homeView(request):
         order_details = []
         total_price = 0
     categories = Category.objects.all().order_by('id')
-    hotproducts = Products.objects.all().order_by('-stock')[7]
+    hotproducts = Products.objects.all().order_by('-stock')[0]
     products = Products.objects.filter(category=categories[0])
 
     return render(request, 'index.html', {'category': categories, 'products':products, 'hotproduct':hotproducts, "order_datails":order_details, 'soni':len(order_details), 'total_price':total_price})
