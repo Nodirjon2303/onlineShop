@@ -28,11 +28,28 @@ class Products(models.Model):
         return self.name
 
 
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=True)
+    like = models.BooleanField(default=False, null=True, blank=True)
+
+    def __str__(self):
+        return self.product.name
+
+
 class Orders(models.Model):
     customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     done_status = models.BooleanField(default=False)
-
+    first_name = models.CharField(max_length=125, null=True, blank=True)
+    last_name = models.CharField(max_length=225, null=True, blank=True)
+    email = models.CharField(max_length=125, null=True, blank=True)
+    number = models.CharField(max_length=25, null=True, blank=True)
+    viloyat = models.CharField(max_length=125, null=True, blank=True)
+    address1 = models.CharField(max_length=225, null=True, blank=True)
+    address2 = models.CharField(max_length=225, null=True, blank=True)
+    postal_code = models.CharField(max_length=125, null=True, blank=True)
     def __str__(self):
         return f"{self.customer.first_name}   {self.done_status}"
 

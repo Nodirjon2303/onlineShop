@@ -48,6 +48,8 @@
 </head>
 <body class="js">
 
+
+
 <script>
     function getCookie(name) {
         let cookieValue = null;
@@ -102,7 +104,7 @@
 								<li><i class="ti-location-pin"></i> Store location</li>
 								<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
 								<li><i class="ti-user"></i> <a href="#">{{ request.user.username }}</a></li>
-								<li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
+								<li><i class="ti-power-off"></i><a href="{% url 'login' %}">Login</a></li>
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -187,7 +189,7 @@
 											<span>Total</span>
 											<span class="total-amount">${{ total_price }}</span>
 										</div>
-										<a href="checkout.html" class="btn animate">Checkout</a>
+										<a href="{% url 'checkout' %}" class="btn animate">Checkout</a>
 									</div>
 								</div>
 								<!--/ End Shopping Item -->
@@ -283,7 +285,7 @@
 													<li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
 														<ul class="dropdown">
 															<li><a href="{% url 'cart' %}">Cart</a></li>
-															<li><a href="checkout.html">Checkout</a></li>
+															<li><a href="{% url 'checkout' %}">Checkout</a></li>
 														</ul>
 													</li>
 													<li><a href="#">Pages</a></li>									
@@ -418,7 +420,7 @@
 														<div class="button-head">
 															<div data-product_id='2' data-price='29' class="product-action">
 																<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-																<a title="Wishlist" href=""><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+																<a title="Wishlist" onclick="like_function({{ i.id }})" id="likesection_{{ i.id }}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
 																<a title="Compare" href=""><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 															</div>
 															<div onclick="addtocart({{ i.id }})" data-product_id='2' data-price='29'  class="product-action-2">
@@ -1018,5 +1020,10 @@
 	<script src="{% static 'template/js/easing.js' %}"></script>
 	<!-- Active JS -->
 	<script src="{% static 'template/js/active.js' %}"></script>
+
+
+<script>
+    all_likes({{ wishlist }})
+</script>
 </body>
 </html>
